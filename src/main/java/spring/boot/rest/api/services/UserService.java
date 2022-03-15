@@ -1,5 +1,6 @@
 package spring.boot.rest.api.services;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,11 @@ public class UserService {
 	}
 	
 	public void saveUser(UserModel user) {
-		this.repository.save(user);
+		repository.save(user);
+	}
+	
+	public List<UserModel> getAll() {
+		return repository.findAll();
 	}
 	
 	public void createAndSaveUser(Map<String, String> user) {
@@ -31,6 +36,6 @@ public class UserService {
 		userModel.setEmail(user.get("email"));
 		userModel.setPassword(user.get("password"));
 		userModel.setCreationDate(user.get("creationDate"));
-		this.saveUser(userModel);
+		saveUser(userModel);
 	}
 }
